@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  
+
   background: #333;
   color: #DDD;
   font-family: Georgia;
@@ -25,7 +25,7 @@ a:active {
 .navbar {
   position: fixed;
   top: 0px;
-  
+
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -43,14 +43,14 @@ a:active {
 }
 
 .footer {
-  
+
   width: 100%;
-  
+
   margin-top: 10px;
-  
+
   padding-top: 10px;
   padding-bottom: 10px;
-  
+
   background: #000;
   font-size: 12px;
 }

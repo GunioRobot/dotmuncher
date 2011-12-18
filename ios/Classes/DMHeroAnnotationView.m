@@ -42,7 +42,7 @@
 		}
 		[animatedHero startAnimating];
 		[self addSubview:animatedHero];
-			
+
     }
     return self;
 }

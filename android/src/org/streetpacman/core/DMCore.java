@@ -207,7 +207,7 @@ public final class DMCore {
 		phoneStatesMap.get(phone).status = DMConstants.PHONE_KILLED;
 	}
 
-	public int getAnimIndex(int ctx) {		
+	public int getAnimIndex(int ctx) {
 		if (!myPhoneState.alive){
 			return DMConstants.DEAD[ctx];
 		}

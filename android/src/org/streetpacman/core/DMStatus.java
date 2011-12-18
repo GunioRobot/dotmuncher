@@ -6,7 +6,7 @@ public class DMStatus implements IStatus {
 	public DMStatus(int value){
 		this.status = value;
 	}
-	
+
 	// xxx
 	public boolean isMode(int mode) {
 		return _isMask(MASK_MODE, mode);

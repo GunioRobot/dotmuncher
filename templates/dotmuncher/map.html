@@ -7,32 +7,32 @@
 <script type="text/javascript" src="{% url dotmuncher_js %}"></script>
 
 <script type="text/javascript">
-    
+
     var init = function() {
-        
+
         dotmuncher.init();
-        
+
         var info = {
           zoom: {{ zoom }},
           center: new google.maps.LatLng({{ centerLat }}, {{ centerLng }}),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(byId("mapcanvas"), info);
-        
+
         console.log('map');
-        
+
         new dotmuncher.MapDefiner(
                             map,
                             byId('toolbar_container'),
                             byId('overlay_container'));
-        
+
     }
-    
+
 </script>
 <style type="text/css">
-    
-    
-    
+
+
+
 </style>
 {% endblock %}
 {% block content %}

@@ -5,9 +5,9 @@ public interface IStatus {
 	public void setMode(int mode);
 	public boolean isPhase(int phase);
 	public void setPhase(int phase);
-	
+
 	public void set(int v);
-	public void unset(int v);	
+	public void unset(int v);
 	public boolean is(int v);
 	// xxx - dependent group
 	// R - reserved
@@ -32,7 +32,7 @@ public interface IStatus {
 	public static final int PHASE_END = 0x00000020;
 
 
-	
+
 	// y - independent bit, so only 1,2,4,8 in 0x
 	// visibility
 	// RRRR yyyy 0000 0000 0000 0000 0000 0000
@@ -40,21 +40,21 @@ public interface IStatus {
 	public static final int VISIBLE_TO_ADVERSARY = 0x02000000;
 	public static final int VISIBLE_TO_OBSERVER = 0x04000000;
 	public static final int VISIBLE_HIDE_GLOBAL = 0x08000000;
-	
+
 	// sensibility
-	// 0000 0000 yyyy 0000 0000 0000 0000 0000	
+	// 0000 0000 yyyy 0000 0000 0000 0000 0000
 	public static final int SENSIBLE_TO_ITEM = 0x00100000;
 	public static final int SENSIBLE_TO_STAGE = 0x00200000;
 	public static final int SENSIBLE_TO_ZONE = 0x00400000;
 	public static final int SENSIBLE_TO_COLLISION = 0x00800000;
-	
+
 	// stage
 	// 0000 0000 0000 yyyy 0000 0000 0000 0000
 	public static final int STAGE_POWER_SELF = 0x00010000;
 	public static final int STAGE_POWER_PEER = 0x00020000;
 	public static final int STAGE_POWER_ADVERSARY = 0x00030000;
 	public static final int STAGE_POWER_ENVIRONMENT = 0x00040000;
-	
+
 	// zone
 	// 0000 0000 0000 0000 RRyy 0000 0000 0000
 	public static final int ZONE_COLLISION_TO_ADV = 0x00001000;

@@ -88,7 +88,7 @@ class DMOverlay extends Overlay {
 						projection.toPixels(p, screenPts);
 						DMSprite.get(i).setXY(screenPts.x, screenPts.y);
 					}
-					
+
 					/*
 					 * if (dmPhoneState.beenEaten) {
 					 * canvas.drawCircle(screenPts.x, screenPts.y, 20,

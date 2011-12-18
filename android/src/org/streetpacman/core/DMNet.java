@@ -22,15 +22,15 @@ public class DMNet {
 	//private static String host = "75.101.141.245";
 	private static int port = 80;
 	//*/
-	
+
 	/*
 	//private static String host = "s0.dotmuncher.com";
 	private static String host = "174.143.141.50";
 	private static int port = 8000;
 	//*/
-	
+
 	//private static String host = "10.0.2.2";
-	
+
 	// http://senior.ceng.metu.edu.tr/2009/praeda/2009/01/11/a-simple-restful-client-at-android/
     private static String convertStreamToString(InputStream is) {
         /*
@@ -41,7 +41,7 @@ public class DMNet {
          */
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
- 
+
         String line = null;
         try {
             while ((line = reader.readLine()) != null) {
@@ -74,18 +74,18 @@ public class DMNet {
         }
         return data;
     }
-	
+
 	public static JSONObject call(final int api, JSONObject json) {
         try{
             Log.i(DMConstants.TAG, "api " + DMConstants.API[api]);
             Log.i(DMConstants.TAG, "json request =" + json.toString(4));
-            InputStream instream = getJSONData("/api/v0/"+ DMConstants.API[api] +".json","json=" + json.toString());            
+            InputStream instream = getJSONData("/api/v0/"+ DMConstants.API[api] +".json","json=" + json.toString());
             json = new JSONObject(convertStreamToString(instream));
             Log.i(DMConstants.TAG, "json response =" + json.toString(4));
             return json;
-        }catch(Exception ex){        	
+        }catch(Exception ex){
             ex.printStackTrace();
             return null;
-        }        		
+        }
 	}
 }

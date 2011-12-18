@@ -37,8 +37,8 @@ phone: an integer assigned by the server</pre>
 ### update\_phone\_settings
 
 <pre>{
-    phoneToken: 
-    name: 
+    phoneToken:
+    name:
 }
 {
     phone: phone integer
@@ -108,13 +108,13 @@ phone: an integer assigned by the server</pre>
 <pre>{
     lat: ""
     lng: ""
-    
+
     hacc: ""
     vacc: ""
-    
+
     game: int
     phone: int
-    
+
     id__gte: int
 }
 {
@@ -144,7 +144,7 @@ phone: an integer assigned by the server</pre>
     type: OHHAI_EVENT = 2
     phone: phone integer
     name: string
-    
+
     i: event id,
     t: timestamp (ms since epoch)
 }
@@ -153,7 +153,7 @@ phone: an integer assigned by the server</pre>
     type: PHONE_EATEN_EVENT = 6
     eater: phone integer
     eatee: phone integer
-    
+
     i: event id,
     t: timestamp (ms since epoch)
 }
@@ -161,7 +161,7 @@ phone: an integer assigned by the server</pre>
 {
     type: ITEM_EATEN_EVENT = 7
     k: '["p","lat","lng"]' for power pellets, '["d","lat","lng"]' for path dots
-    
+
     i: event id,
     t: timestamp (ms since epoch)
 }
@@ -169,7 +169,7 @@ phone: an integer assigned by the server</pre>
 {
     type: GAME_OVER = 8
     reason: int
-    
+
     i: event id,
     t: timestamp (ms since epoch)
 }

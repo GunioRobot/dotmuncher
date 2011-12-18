@@ -39,7 +39,7 @@ public class DMSpriteFactory {
 			}
 		}
 	}
-	
+
 	public int getAnimIndex(int ctx){
 		if(ctxMap.get(ctx) == null){
 			return 0;

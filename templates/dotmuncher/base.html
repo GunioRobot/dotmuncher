@@ -10,7 +10,7 @@
   </script>
 </head>
 <body onload="if (window.init) { init(); }">
-  
+
   <div class="navbar">
     {##########/* TODO min width */##########}
     <a class="logo" href="{% url index %}">Street Pacman</a>
@@ -20,7 +20,7 @@
     <a href="{% url iphone %}">iPhone</a>
     <a href="{% url android %}">Android</a>
   </div>
-  
+
   <div class="base_content">
     {% block content %}{% endblock %}
   </div>

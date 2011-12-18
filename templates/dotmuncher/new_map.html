@@ -7,9 +7,9 @@
 <script type="text/javascript" src="{% url dotmuncher_js %}"></script>
 
 <script type="text/javascript">
-    
+
     var init = function() {
-        
+
         dotmuncher.init();
         /*
         var info = {
@@ -20,21 +20,21 @@
         var map = new google.maps.Map(byId("mapcanvas"), info);
         */
         map = null;
-        
+
         new dotmuncher.BoardWidget(
                             map,
                             byId('widget'),
                             byId('overlay_container'));
-        
+
     }
-    
+
 </script>
 <style type="text/css">
-    
+
     body {
       background: #666;
     }
-    
+
 </style>
 {% endblock %}
 {% block content %}

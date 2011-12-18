@@ -49,7 +49,7 @@ public class DMStreetPacman extends TabActivity implements OnTouchListener {
 
 		startActivityForResult(new Intent(this, DMBoard.class),
 				DMConstants.SHOW_BOARD);
-				
+
 //		startActivityForResult(new Intent(this, DMLoading.class),
 //				DMConstants.SHOW_LOADING);
 
@@ -61,7 +61,7 @@ public class DMStreetPacman extends TabActivity implements OnTouchListener {
 		 * .setIndicator("Loading",
 		 * res.getDrawable(android.R.drawable.ic_menu_mapmode)) .setContent(new
 		 * Intent(this, DMLoading.class)));
-		 * 
+		 *
 		 * tabHost.addTab(tabHost .newTabSpec("tab1") .setIndicator("Board",
 		 * res.getDrawable(android.R.drawable.ic_menu_mapmode)) .setContent(new
 		 * Intent(this, DMBoard.class)));
@@ -76,7 +76,7 @@ public class DMStreetPacman extends TabActivity implements OnTouchListener {
 		case DMConstants.SHOW_LOADING: {
 			startActivityForResult(new Intent(this, DMBoard.class),
 					DMConstants.SHOW_BOARD);
-			
+
 //			if (resultCode == RESULT_OK) {
 //				startActivityForResult(new Intent(this, DMGamesList.class),
 //						DMConstants.SHOW_GAMESLIST);

@@ -1,12 +1,12 @@
 /*
  * Copyright 2008 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -31,11 +31,11 @@ import org.streetpacman.core.DMGeoPoint;
 
 /**
  * Utility class for decimating tracks at a given level of precision.
- * 
+ *
  * @author Leif Hendrik Wilden, Modified by Yi Wang
  */
 public class DMUtils {
-	
+
 	public static List<DMGeoPoint> JSONArray2GeoPoints(JSONArray jsonArray) throws JSONException{
 		List<DMGeoPoint> ptList = new ArrayList<DMGeoPoint>();
 		for(int i=0;i<jsonArray.length();i++){
@@ -46,7 +46,7 @@ public class DMUtils {
 		}
 		return ptList;
 	}
-	
+
 	public static JSONArray GeoPoints2JSONArray(List<DMGeoPoint> ptList){
 		JSONArray jsonArray = new JSONArray();
 		//TODO
@@ -56,7 +56,7 @@ public class DMUtils {
   /**
    * Computes the distance on the two sphere between the point c0 and the line
    * segment c1 to c2.
-   * 
+   *
    * @param c0 the first coordinate
    * @param c1 the beginning of the line segment
    * @param c2 the end of the lone segment
@@ -98,7 +98,7 @@ public class DMUtils {
   /**
    * Decimates the given locations for a given zoom level. This uses a
    * Douglas-Peucker decimation algorithm.
-   * 
+   *
    * @param tolerance in meters
    * @param locations input
    * @param decimated output
@@ -161,7 +161,7 @@ public class DMUtils {
 
   /**
    * Test if a given GeoPoint is valid, i.e. within physical bounds.
-   * 
+   *
    * @param geoPoint the point to be tested
    * @return true, if it is a physical location on earth.
    */
@@ -175,7 +175,7 @@ public class DMUtils {
    * on Earth. Note: The special separator locations (which have latitude =
    * 100) will not qualify as valid. Neither will locations with lat=0 and lng=0
    * as these are most likely "bad" measurements which often cause trouble.
-   * 
+   *
    * @param location the location to test
    * @return true if the location is a valid location.
    */
@@ -186,7 +186,7 @@ public class DMUtils {
 
   /**
    * Gets a location from a GeoPoint.
-   * 
+   *
    * @param p a GeoPoint
    * @return the corresponding location
    */

@@ -8,11 +8,11 @@
 <script type="text/javascript" src="{% url dotmuncher_js %}"></script>
 
 <script type="text/javascript">
-    
+
     var init = function() {
-        
+
         dotmuncher.init();
-        
+
         var info = {
           zoom: 16,
           navigationControl: false,
@@ -22,7 +22,7 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(byId("mapcanvas"), info);
-        
+
         new dotmuncher.GameViewer(
                             map,
                             {{ game.id }},
@@ -30,27 +30,27 @@
                             byId('overlay_container'),
                             {{ map.infoJson|safe }});
     }
-    
+
 </script>
 
 
 <style type="text/css">
-    
+
     body {
       background: #666;
     }
-    
+
 </style>
 {% endblock %}
 {% block content %}
-    
+
     <center>
         <h2>Game #{{ game.id }} on map #{{ map.id }}</h2>
     </center>
-    
+
     <div id="toolbar_container"></div>
     <div id="overlay_container">
         <div id="mapcanvas"></div>
     </div>
-    
+
 {% endblock %}

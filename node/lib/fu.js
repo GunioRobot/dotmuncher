@@ -81,13 +81,13 @@ fu.staticHandler = function (filename) {
                 ];
       if (!DEBUG)
         headers.push(["Cache-Control", "public"]);
-       
+
       //sys.puts("static file " + filename + " loaded");
       callback();
     });
 
     // promise.addErrback(function () {
-    //   
+    //
     // });
   }
 
@@ -106,7 +106,7 @@ fu.mime = {
   lookupExtension : function(ext, fallback) {
     return fu.mime.TYPES[ext.toLowerCase()] || fallback || 'application/octet-stream';
   },
-  
+
   // List of most common mime-types, stolen from Rack.
   TYPES : { ".3gp"   : "video/3gpp"
           , ".a"     : "application/octet-stream"

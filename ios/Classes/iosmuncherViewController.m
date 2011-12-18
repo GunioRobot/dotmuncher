@@ -41,14 +41,14 @@
 
 	MKCoordinateRegion region;
 	region.center = CLLocationCoordinate2DMake(40, -74);
-	
+
 	MKCoordinateSpan span;
 	span.latitudeDelta=0.01;
 	span.longitudeDelta=0.01;
 	region.span=span;
 	[mapView setRegion:region animated:FALSE];
 
-	
+
     [super viewDidLoad];
 }
 
@@ -65,7 +65,7 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
+
 	// Release any cached data, images, etc that aren't in use.
 }
 

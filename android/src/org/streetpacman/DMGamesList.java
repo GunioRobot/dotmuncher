@@ -28,7 +28,7 @@ public class DMGamesList extends ListActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.dmmaps_list);
 		listView = getListView();
-		
+
 		setResult(RESULT_OK);
 		//finish();
 	}

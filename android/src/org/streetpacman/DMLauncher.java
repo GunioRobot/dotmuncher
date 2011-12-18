@@ -40,7 +40,7 @@ public class DMLauncher extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
+
         setListAdapter(new SimpleAdapter(this, getData(),
                 android.R.layout.simple_list_item_1, new String[] { "title" },
                 new int[] { android.R.id.text1 }));
@@ -60,9 +60,9 @@ public class DMLauncher extends ListActivity {
             return myData;
 
         String[] prefixPath;
-        
+
         int len = list.size();
-        
+
         Map<String, Boolean> entries = new HashMap<String, Boolean>();
 
         for (int i = 0; i < len; i++) {
@@ -78,7 +78,7 @@ public class DMLauncher extends ListActivity {
         }
 
         Collections.sort(myData, sDisplayNameComparator);
-        
+
         return myData;
     }
 
@@ -95,7 +95,7 @@ public class DMLauncher extends ListActivity {
         result.setClassName(pkg, componentName);
         return result;
     }
-    
+
     protected void addItem(List<Map> data, String name, Intent intent) {
         Map<String, Object> temp = new HashMap<String, Object>();
         temp.put("title", name);

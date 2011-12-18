@@ -91,7 +91,7 @@ public class DMSprite extends ImageView {
 	public static DMSprite get(int ctx){
 		return get(factory.getAnimIndex(ctx), ctx);
 	}
-	
+
 	public static DMSprite get(int animIndex, int ctx) {
 		return factory.getSprite(animIndex, ctx);
 	}

@@ -11,18 +11,18 @@ import junit.framework.TestCase;
 public class DMAPITest extends TestCase {
 	JSONObject json;
 	DMCore dmApp;
-    
+
 	protected void setUp() {
 		dmApp = new DMCore("test_dmApp");
-		
+
 	}
-   
+
 	public void test_update(){
 		// new_game
 		try {
 			dmApp.myPhone.phone = 5;
 			dmApp.myPhone.map = 3;
-			dmApp.net(DMConstants.new_game, null, null);			
+			dmApp.net(DMConstants.new_game, null, null);
 		} catch (Exception e) {
 			assertTrue(false);
 			e.printStackTrace();
@@ -31,7 +31,7 @@ public class DMAPITest extends TestCase {
 		// join_game
 		try {
 			Log.i("DM", "update dmApp.dmPhone.game" + Integer.toString(dmApp.myPhone.game));
-			dmApp.net(DMConstants.join_game, null, null);			
+			dmApp.net(DMConstants.join_game, null, null);
 		} catch (Exception e) {
 			assertTrue(false);
 			e.printStackTrace();
@@ -43,20 +43,20 @@ public class DMAPITest extends TestCase {
 			dmApp.myPhone.acc = 10;
 			dmApp.myPhone.lat = 40.11111;
 			dmApp.myPhone.lng = 15.11111;
-			dmApp.net(DMConstants.update, null, null);			
+			dmApp.net(DMConstants.update, null, null);
 		} catch (Exception e) {
 			assertTrue(false);
 			e.printStackTrace();
 		}
 		assertTrue(dmApp.phoneStates.size() > 0);
 	}
-	
+
 	public void test_join_game(){
 		// new_game
 		try {
 			dmApp.myPhone.phone = 5;
 			dmApp.myPhone.map = 3;
-			dmApp.net(DMConstants.new_game, null, null);			
+			dmApp.net(DMConstants.new_game, null, null);
 		} catch (Exception e) {
 			assertTrue(false);
 			e.printStackTrace();
@@ -65,46 +65,46 @@ public class DMAPITest extends TestCase {
 		// join_game
 		try {
 			Log.i("DM", "dmApp.dmPhone.game" + Integer.toString(dmApp.myPhone.game));
-			dmApp.net(DMConstants.join_game, null, null);			
+			dmApp.net(DMConstants.join_game, null, null);
 		} catch (Exception e) {
 			assertTrue(false);
 			e.printStackTrace();
 		}
 		assertTrue(dmApp.map.dotPoints.size() > 0);
 	}
-	
+
 	public void test_new_game(){
 		try {
 			dmApp.myPhone.phone = 5;
 			dmApp.myPhone.map = 3;
-			dmApp.net(DMConstants.new_game, null, null);			
+			dmApp.net(DMConstants.new_game, null, null);
 		} catch (Exception e) {
 			assertTrue(false);
 			e.printStackTrace();
 		}
 		assertTrue(dmApp.map.dotPoints.size() > 0);
 	}
-	
+
 	public void test_find_games(){
 		try {
-			dmApp.net(DMConstants.find_games, null, null);			
+			dmApp.net(DMConstants.find_games, null, null);
 		} catch (Exception e) {
 			assertTrue(false);
 			e.printStackTrace();
 		}
 		assertTrue(dmApp.alGames.size() > 0);
 	}
-	
+
 	public void test_find_maps(){
 		try {
-			dmApp.net(DMConstants.find_maps, null, null);			
+			dmApp.net(DMConstants.find_maps, null, null);
 		} catch (Exception e) {
 			assertTrue(false);
 			e.printStackTrace();
 		}
 		assertTrue(dmApp.alMaps.size() > 0);
 	}
-	
+
 	public void test_getJSONFor() {
 		try {
 			for(int api = 0; api < 7; api ++){
@@ -115,10 +115,10 @@ public class DMAPITest extends TestCase {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void test_update_phone_settings(){
 		try {
-			dmApp.net(DMConstants.update_phone_settings, null, null);			
+			dmApp.net(DMConstants.update_phone_settings, null, null);
 		} catch (Exception e) {
 			assertTrue(false);
 			e.printStackTrace();

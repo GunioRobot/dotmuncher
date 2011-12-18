@@ -27,7 +27,7 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 	heroAnnotationView = nil;
 	lastReceivedEvent = 0;
 	[self beginGame];
-	
+
 	[self startTrackingCoordinates];
 	return self;
 }
@@ -35,13 +35,13 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 - (void)startTrackingCoordinates {
     if (nil == locationManager)
         locationManager = [[CLLocationManager alloc] init];
-	
+
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation; // will kill the battery :(
-	
-    [locationManager startUpdatingLocation];	
+
+    [locationManager startUpdatingLocation];
 	[locationManager startUpdatingHeading];
-		
+
 }
 
 // Delegate method from the CLLocationManagerDelegate protocol.
@@ -75,15 +75,15 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 		[greenGhostAnnotation setType:HERO_GHOST_GREEN];
 		[mapView addAnnotation:greenGhostAnnotation];
 	}
-	
+
 	*/
 	NSLog(@"hero %i location: latitude %+.6f, longitude %+.6f\n",
 		  phoneID,
 		  newLocation.coordinate,
-		  newLocation.coordinate);	
+		  newLocation.coordinate);
 
 	[mapView setCenterCoordinate:newLocation.coordinate animated:TRUE];
-	
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
@@ -92,7 +92,7 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 	float heading = ([newHeading trueHeading] - 90) * M_PI / 180.0; // -90 for hero to look correct
 	CGAffineTransform transform = CGAffineTransformMakeRotation(heading);
 	if (heroAnnotationView != nil)
-		heroAnnotationView.transform = transform;	
+		heroAnnotationView.transform = transform;
 }
 
 - (void)beginGame {
@@ -101,7 +101,7 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 	NSString *requestURLString = [NSString stringWithFormat:@"%@find_games.json?json=%@", apiURL, [[NSString stringWithFormat:@"{\"lat\": 0, \"lng\": 0, \"phoneToken\": \"%@\"}", [[UIDevice currentDevice] uniqueIdentifier]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	NSURL *requestURL = [NSURL URLWithString:requestURLString];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
-	NSURLConnection *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];	
+	NSURLConnection *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	NSString *responseString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
 	NSLog(@"%@", responseString);
 	NSDictionary *returnDict = [jsonParser objectWithString:responseString];
@@ -114,10 +114,10 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 	gameID = 21;
 	NSNumber *newPhoneID = [returnDict objectForKey:@"phone"];
 	phoneID = [newPhoneID intValue];
-	
-	
+
+
 	/*
-	
+
 	requestURLString = [NSString stringWithFormat:@"%@new_game.json?json=%@", apiURL, [[NSString stringWithFormat:@"{\"map\": 1, \"phone\": %i}", phoneID] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	requestURL = [NSURL URLWithString:requestURLString];
 	request = [NSMutableURLRequest requestWithURL:requestURL];
@@ -125,10 +125,10 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 	responseString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
 	NSLog(@"%@", responseString);
 	returnDict = [jsonParser objectWithString:responseString];
-	NSLog(@"%@", [returnDict description]);	
-	
+	NSLog(@"%@", [returnDict description]);
+
 	*/
-	
+
 	requestURLString = [NSString stringWithFormat:@"%@join_game.json?json=%@", apiURL, [[NSString stringWithFormat:@"{\"game\": %i, \"phone\": %i}", gameID, phoneID] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	requestURL = [NSURL URLWithString:requestURLString];
 	request = [NSMutableURLRequest requestWithURL:requestURL];
@@ -138,12 +138,12 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 	returnDict = [jsonParser objectWithString:responseString];
 	NSLog(@"%@", [returnDict description]);
 	mapInfoDict = [[returnDict objectForKey:@"mapInfo"] retain];
-	
+
 	// start our network queue
 	dispatch_async(dispatch_get_global_queue(0, 0), ^{
 		BOOL networkThreadActive = YES;
 		//TODO: this should sometimes not be yes
-		
+
 		while (networkThreadActive) {
 			__block NSNumber *game;
 			__block NSNumber *phone;
@@ -168,9 +168,9 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 
 - (NSMutableDictionary *)serverUpdateWithLocation:(CLLocation *)newLocation gameID:(NSNumber *)game phoneID:(NSNumber *)phone lastReceivedEvent:(NSNumber *)lastEvent {
 	NSMutableDictionary *locationRequestDict = [NSMutableDictionary dictionaryWithCapacity:1];
-	
+
 	NSMutableArray *locationRequestArray = [NSMutableArray array];
-	
+
 	NSDictionary *locationDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 										lastEvent,  @"id__gte",
 										game,  @"game",
@@ -179,7 +179,7 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 										[NSString stringWithFormat:@"%+.6f", newLocation.coordinate.longitude], @"lng",
 										[NSString stringWithFormat:@"%+.6f", newLocation.horizontalAccuracy],  @"hacc",
 										[NSString stringWithFormat:@"%+.6f", newLocation.verticalAccuracy], @"vacc", nil ];
-		
+
 	NSString *requestURLString = [NSString stringWithFormat:@"%@update.json?json=%@", apiURL, [[jsonWriter stringWithObject:locationDictionary] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	NSURL *requestURL = [NSURL URLWithString:requestURLString];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
@@ -194,14 +194,14 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 	 */
 	// server wants GET requests for some reason, eh.
 
-	
-	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];	
+
+	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
 	NSLog(@"%@", returnString);
 	NSMutableDictionary *returnDict = [jsonParser objectWithString:returnString];
-	
+
 	[returnString release];
-	
+
 	return returnDict;
 }
 
@@ -212,8 +212,8 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 		if (heroID == 0) {
 			NSLog(@"moved hero: latitude %+.6f, longitude %+.6f\n",
 				  latlong.latitude,
-				  latlong.longitude);	
-			
+				  latlong.longitude);
+
 			[heroAnnotation setCoordinate:latlong]; // update pacman
 			[heroAnnotation setType:HERO_DOT_MUNCHER];
 			[mapView addAnnotation:heroAnnotation];
@@ -221,8 +221,8 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 		if (heroID == 1) {
 			NSLog(@"moved red: latitude %+.6f, longitude %+.6f\n",
 				  latlong.latitude,
-				  latlong.longitude);	
-			
+				  latlong.longitude);
+
 			[redGhostAnnotation setCoordinate:latlong]; // update pacman
 			[redGhostAnnotation setType:HERO_GHOST_RED];
 			[mapView addAnnotation:redGhostAnnotation];
@@ -230,8 +230,8 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 		if (heroID == 2) {
 			NSLog(@"moved pink: latitude %+.6f, longitude %+.6f\n",
 				  latlong.latitude,
-				  latlong.longitude);	
-			
+				  latlong.longitude);
+
 			[pinkGhostAnnotation setCoordinate:latlong]; // update pacman
 			[pinkGhostAnnotation setType:HERO_GHOST_PINK];
 			[mapView addAnnotation:pinkGhostAnnotation];
@@ -239,8 +239,8 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 		if (heroID == 3) {
 			NSLog(@"moved green: latitude %+.6f, longitude %+.6f\n",
 				  latlong.latitude,
-				  latlong.longitude);	
-			
+				  latlong.longitude);
+
 			[greenGhostAnnotation setCoordinate:latlong]; // update pacman
 			[greenGhostAnnotation setType:HERO_GHOST_GREEN];
 			[mapView addAnnotation:greenGhostAnnotation];
@@ -260,19 +260,19 @@ NSString *debugURL = @"http://urban.pyxc.org/api/v0/debug.json";
 - (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
 {
 	NSString *AnnotationViewID = [NSString stringWithFormat:@"heroID%i", [annotation type]];
-	
+
     DMHeroAnnotationView *annotationView =
 	(DMHeroAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
     if (annotationView == nil)
     {
         annotationView = [[[DMHeroAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID] autorelease];
     }
-    
+
     annotationView.annotation = annotation;
-	
+
 	if ([annotation type] == HERO_DOT_MUNCHER)
 		heroAnnotationView = annotationView;
-	
+
     return annotationView;
 }
 

@@ -47,7 +47,7 @@
       A list of each command's results will be returned by execution.  Use
       this for batch processing in order to eliminate multiple request/response
       cycles.
-      
+
 * 0.6.1
     * Added support for ZINCRBY via the `zincr` command
     * Swapped score and member parameters to zadd to make it more similar to other commands.
